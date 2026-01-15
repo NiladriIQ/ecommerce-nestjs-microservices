@@ -1,0 +1,23 @@
+# node
+node_modules
+dist
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Keep example files
+!.env.example
+!.env.*.example
+
+# logs
+npm-debug.log
+yarn-error.log
+
+# docker
+*.volume
+
+# next
+.next
+out
