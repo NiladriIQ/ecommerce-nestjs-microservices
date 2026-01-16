@@ -81,9 +81,9 @@ export default function CartPage() {
         <Navbar />
         <main className="max-w-4xl mx-auto p-6 text-center pt-20">
           <span className="text-6xl mb-4 block">🛒</span>
-          <h1 className="text-2xl font-bold mb-4">Your cart is empty</h1>
-          <p className="text-gray-600 mb-8">Looks like you haven't added anything yet.</p>
-          <button onClick={() => router.push('/')} className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700">
+          <h1 className="text-3xl font-bold mb-4 text-gray-900">Your cart is empty</h1>
+          <p className="text-gray-700 mb-8 text-lg">Looks like you haven't added anything yet.</p>
+          <button onClick={() => router.push('/')} className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">
             Start Shopping
           </button>
         </main>
@@ -95,7 +95,7 @@ export default function CartPage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <main className="max-w-6xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-8 text-center md:text-left">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center md:text-left text-gray-900">Shopping Cart</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
@@ -109,15 +109,15 @@ export default function CartPage() {
                         📦
                       </div>
                       <div>
-                        <h3 className="font-bold">{item.name}</h3>
-                        <p className="text-blue-600 font-semibold">${item.price}</p>
+                        <h3 className="font-bold text-gray-900 text-lg">{item.name}</h3>
+                        <p className="text-blue-600 font-semibold text-base">${item.price}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-6">
                       <div className="flex items-center border rounded-lg bg-gray-50">
-                        <button onClick={() => updateQuantity(item.id, -1)} className="px-3 py-1 hover:text-blue-600 font-bold">-</button>
-                        <span className="px-3 font-semibold">{item.quantity}</span>
-                        <button onClick={() => updateQuantity(item.id, 1)} className="px-3 py-1 hover:text-blue-600 font-bold">+</button>
+                        <button onClick={() => updateQuantity(item.id, -1)} className="px-3 py-1 hover:text-blue-600 font-bold text-gray-700 text-lg">-</button>
+                        <span className="px-3 font-semibold text-gray-900">{item.quantity}</span>
+                        <button onClick={() => updateQuantity(item.id, 1)} className="px-3 py-1 hover:text-blue-600 font-bold text-gray-700 text-lg">+</button>
                       </div>
                       <button onClick={() => removeItem(item.id)} className="text-red-500 hover:text-red-700 text-sm font-semibold">Remove</button>
                     </div>
@@ -125,7 +125,7 @@ export default function CartPage() {
                 ))}
               </ul>
               <div className="bg-gray-50 p-6 flex justify-between items-center border-t">
-                <span className="text-gray-600 font-medium">Total Amount:</span>
+                <span className="text-gray-700 font-semibold text-lg">Total Amount:</span>
                 <span className="text-2xl font-bold text-blue-600">${total.toFixed(2)}</span>
               </div>
             </div>
@@ -134,43 +134,43 @@ export default function CartPage() {
           {/* Checkout Form */}
           <div className="lg:col-span-1">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-blue-50">
-              <h2 className="text-xl font-bold mb-6">Checkout Details</h2>
+              <h2 className="text-xl font-bold mb-6 text-gray-900">Checkout Details</h2>
               {error && (
-                <div className="bg-red-50 text-red-600 p-3 rounded mb-4 text-sm font-medium">
+                <div className="bg-red-50 text-red-700 p-3 rounded mb-4 text-sm font-medium border border-red-200">
                   {error}
                 </div>
               )}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Full Name</label>
+                  <label className="block text-sm font-semibold mb-1 text-gray-700">Full Name</label>
                   <input 
                     required
                     type="text" 
                     value={formData.name}
                     onChange={e => setFormData({...formData, name: e.target.value})}
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder:text-gray-400" 
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Email Address</label>
+                  <label className="block text-sm font-semibold mb-1 text-gray-700">Email Address</label>
                   <input 
                     required
                     type="email" 
                     value={formData.email}
                     onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder:text-gray-400" 
                     placeholder="john@example.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Shipping Address</label>
+                  <label className="block text-sm font-semibold mb-1 text-gray-700">Shipping Address</label>
                   <textarea 
                     required
                     rows={3}
                     value={formData.address}
                     onChange={e => setFormData({...formData, address: e.target.value})}
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder:text-gray-400" 
                     placeholder="123 Main St, City, Country"
                   />
                 </div>

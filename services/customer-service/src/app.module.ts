@@ -17,11 +17,11 @@ import { CustomerModule } from './customer/customer.module';
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        ...configService.get('db'),
-        // autoLoadEntities handles entity discovery automatically
-        // No need to manually specify entity paths
-      }),
+      useFactory: (configService: ConfigService) => {
+        const dbConfig = configService.get('db');
+        if (!dbConfig) throw new Error('Database configuration not found. Please check your .env files.');
+        return { ...dbConfig };
+      },
     }),
     CustomerModule,
   ],

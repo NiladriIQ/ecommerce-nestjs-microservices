@@ -10,7 +10,8 @@ export default async function HomePage() {
     products = await getProducts();
   } catch (err) {
     console.error(err);
-    error = "Could not connect to the Product Service. Please ensure the backend is running on port 3001.";
+    const productServiceUrl = process.env.NEXT_PUBLIC_PRODUCT_SERVICE_URL || 'http://localhost:3001';
+    error = `Could not connect to the Product Service. Please ensure the backend is running at ${productServiceUrl}.`;
   }
 
   return (
@@ -47,7 +48,7 @@ export default async function HomePage() {
               <div className="bg-blue-50 p-4 rounded-lg inline-block text-left max-w-md">
                 <p className="text-xs font-mono text-blue-700">
                   # Example API call to add a product:<br/>
-                  POST http://localhost:3001/products<br/>
+                  POST {process.env.NEXT_PUBLIC_PRODUCT_SERVICE_URL || 'http://localhost:3001'}/products<br/>
                   {'{ "name": "Classic T-Shirt", "price": 25.99, "stock": 50, "description": "High quality cotton" }'}
                 </p>
               </div>

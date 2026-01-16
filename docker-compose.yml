@@ -6,11 +6,11 @@ services:
     image: postgres:16-alpine
     container_name: product-order-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: product_order_db
+      POSTGRES_USER: ${POSTGRES_PRODUCT_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PRODUCT_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_PRODUCT_DB:-product_order_db}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PRODUCT_PORT:-5432}:5432"
     volumes:
       - product_order_db_data:/var/lib/postgresql/data
     healthcheck:
@@ -26,11 +26,11 @@ services:
     image: postgres:16-alpine
     container_name: customer-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: customer_db
+      POSTGRES_USER: ${POSTGRES_CUSTOMER_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_CUSTOMER_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_CUSTOMER_DB:-customer_db}
     ports:
-      - "5433:5432"
+      - "${POSTGRES_CUSTOMER_PORT:-5433}:5432"
     volumes:
       - customer_db_data:/var/lib/postgresql/data
     healthcheck:
@@ -46,11 +46,11 @@ services:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq
     ports:
-      - "5672:5672"   # RabbitMQ port
-      - "15672:15672" # Management UI port
+      - "${RABBITMQ_PORT:-5672}:5672"   # RabbitMQ port
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672" # Management UI port
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 10s

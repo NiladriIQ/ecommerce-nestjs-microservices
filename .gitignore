@@ -6,10 +6,12 @@ dist
 .env
 .env.local
 .env.*.local
+docker-compose.env
 
 # Keep example files
 !.env.example
 !.env.*.example
+!docker-compose.env.example
 
 # logs
 npm-debug.log
