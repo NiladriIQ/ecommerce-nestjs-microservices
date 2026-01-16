@@ -6,7 +6,7 @@ import {
   MinLength,
   MaxLength,
 } from 'class-validator';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 
 export class CreateCustomerDto {
   @ApiProperty({
@@ -50,45 +50,5 @@ export class CreateCustomerDto {
   address?: string;
 }
 
-export class UpdateCustomerDto {
-  @ApiPropertyOptional({
-    description: 'Customer full name',
-    example: 'John Doe Updated',
-    minLength: 2,
-    maxLength: 255,
-  })
-  @IsOptional()
-  @IsString({ message: 'Name must be a string' })
-  @MinLength(2, { message: 'Name must be at least 2 characters long' })
-  @MaxLength(255, { message: 'Name must not exceed 255 characters' })
-  name?: string;
-
-  @ApiPropertyOptional({
-    description: 'Customer email address',
-    example: 'john.doe.updated@example.com',
-  })
-  @IsOptional()
-  @IsEmail({}, { message: 'Email must be a valid email address' })
-  email?: string;
-
-  @ApiPropertyOptional({
-    description: 'Customer phone number',
-    example: '+1234567890',
-    maxLength: 20,
-  })
-  @IsOptional()
-  @IsString({ message: 'Phone must be a string' })
-  @MaxLength(20, { message: 'Phone must not exceed 20 characters' })
-  phone?: string;
-
-  @ApiPropertyOptional({
-    description: 'Customer address',
-    example: '456 New St, City, State, ZIP',
-    maxLength: 500,
-  })
-  @IsOptional()
-  @IsString({ message: 'Address must be a string' })
-  @MaxLength(500, { message: 'Address must not exceed 500 characters' })
-  address?: string;
-}
+export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {}
 
