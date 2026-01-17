@@ -6,7 +6,8 @@ import {
   Max,
   IsNotEmpty,
 } from 'class-validator';
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateProductDto {
   @ApiProperty({
