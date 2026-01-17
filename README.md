@@ -59,27 +59,6 @@ npm run dev
 
 ---
 
-## 🧪 How to Demo the Flow
-
-1.  **Seed Products**: Use an API client (like Postman or cURL) to add a few products to the Product Service.
-    ```bash
-    curl -X POST http://localhost:3001/products \
-    -H "Content-Type: application/json" \
-    -d '{"name": "Gaming Laptop", "price": 1299.99, "stock": 10, "description": "High performance"}'
-    ```
-2.  **Browse Products**: Open `http://localhost:3000` to see your laptop.
-3.  **Add to Cart**: Click "Add to Cart".
-4.  **Checkout**: 
-    - Go to the Cart.
-    - Enter customer details (Name, Email, Address).
-    - Click "Place Order".
-5.  **Verify Sync**: 
-    - The browser will redirect you to the History page.
-    - Select your customer from the dropdown.
-    - **Result**: You will see the order details. This data was successfully emitted from the Product service and stored in the Customer service via **RabbitMQ**!
-
----
-
 ## 🛠️ API Documentation
 
 ### **Product & Order Service** (Port 3001)
